@@ -1,0 +1,7 @@
+from django import template
+
+register = template.Library()
+
+@register.filter
+def iescape(value,arg):
+    return value.replace("&ie&",arg)
