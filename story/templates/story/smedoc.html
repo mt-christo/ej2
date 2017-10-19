@@ -1,6 +1,7 @@
 
 {% extends "story/base.html" %}
 {% load static %}
+{% load iescape %}
 
 {% block scripts %}
 <style>
@@ -41,7 +42,7 @@ div.section > div > input {margin:0px;padding-left:5px;font-size:10px;padding-ri
 }
 </style>
 
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!--<script type="text/javascript" src="https://www.google.com/jsapi"></script>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -57,25 +58,45 @@ $(document).ready(function(){
                 $("." + clase).removeClass("active");
                 $(this).addClass("active");
             });              
-        }) 
+
+            //create trigger to resizeEnd event     
+            $(window).resize(function() {
+                if(this.resizeTO) clearTimeout(this.resizeTO);
+                this.resizeTO = setTimeout(function() {
+                    $(this).trigger('resizeEnd');
+                }, 500);
+            });
+
+            //redraw graph when window resize is completed  
+            $(window).on('resizeEnd', function() {
+                drawChart();
+            });
+}) 
 </script>	
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-  google.load('visualization', '1.0', {'packages':['corechart']});
-  google.setOnLoadCallback(drawChart);
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
   function drawChart() {
     var data = new google.visualization.DataTable();
-    data.addColumn('date', 'Время');
-    data.addColumn('number', 'Цена');
+    data.addColumn('date', 'Date');
+    data.addColumn('number', 'Index');
+    data.addColumn('number', 'Basket');
+    data.addColumn({type: 'string', role: 'annotation'});
   data.addRows( [
-    {{ data|safeseq|join:", "|cut:"'" }}
+    {{ data|safeseq|join:", "|cut:"'"|iescape|safe }}
 	    ]);
 
     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
   var options = {
-  chartArea: {'width': '100%', 'height': '80%'},
   legend: {'position': 'bottom'},
-  title: "annotation 1",
-  curveType: 'function'
+  title: "",
+  curveType: 'function',
+  vAxis: { format: 'percent'},
+  //  hAxis: { gridlines: { color: '#FFF' } },
+  hAxis: { ticks: [ {{ ticks|safeseq|join:", "|cut:"'"|iescape|safe }} ]},
+  annotations: { style: 'point', textStyle: { fontSize: 12, bold: true, textAlign: 'bottom', opacity: 1 } },
+  chartArea: { width: '80%', height:'55%' }
   };
 
   chart.draw(data, options);
@@ -90,93 +111,92 @@ $(document).ready(function(){
 
 
 <div class="container">	
-	<div class="row">
-		<div class="col-sm-6 item-photo">
-			<div class="row">
-				<div class="col-sm-6">
-					<img class="img-responsive img-rounded" src="{% static "/" %}{{ product.explainpath }}" width="100%"/>
-				</div>
-				<div class="col-sm-6">
-					<img class="img-responsive img-rounded" src="{% static "/" %}{{ product.explainpath2 }}" width="100%"/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12">
-					<div id="chart_div" style="width:100%"></div>
-				</div>
-			</div>
-		</div>    
-		<div class="col-sm-6" style="border:0px solid gray">
-			<p>
-				<br>
-				<span style="font-size:2em">{{ product.titlecard }}</span>
-				<br>
-				<span style="font-size:1.2em">Участие в секторальном индексе</span>
-				<br>
-				<br>
-				<span style="font-size:1em">УЧАСТИЕ: </span>
-				<span style="font-size:2em;font-weight:bold">{{ product.participation }}</span>
-			</p>
-		    <br>
+  <div class="row">
+    <div class="col-sm-6 item-photo">
+      <div class="row">
+	<div class="col-sm-6">
+	  <img class="img-responsive img-rounded" src="{% static "/" %}{{ product.explainpath }}" width="100%"/>
+	</div>
+	<div class="col-sm-6">
+	  <img class="img-responsive img-rounded" src="{% static "/" %}{{ product.explainpath2 }}" width="100%"/>
+	</div>
+      </div>
+      <div class="row">
+	<div class="col-sm-12">
+          <div id="chart_div" style="width:100%"></div>
+        </div>
+      </div>
+    </div>    
+    <div class="col-sm-6" style="border:0px solid gray">
+      <p>
+	<br>
+	<span style="font-size:2em">{{ product.titlecard }}</span>
+	<br>
+	<span style="font-size:1.2em">Участие в секторальном индексе</span>
+	<br>
+        <br>
+	<span style="font-size:1em">УЧАСТИЕ: </span>
+	<span style="font-size:2em;font-weight:bold">{{ product.participation }}</span>
+      </p>
+      <br>
+     
+      <!-- Detalles especificos del producto -->
+      <div class="section" style="padding-bottom:5px;">
+        <span style="font-size:1em">СТРАХОВАЯ КОМПАНИЯ: </span>
+	<br>
+        <div>
+          <div class="attr2"><img src="{% static "/" %}ingos2.jpg" width="90px"/></div>
+          &nbsp<div class="attr2"><img src="{% static "/" %}allianz.jpg" width="90px"/></div>
+          &nbsp<div class="attr2"><img src="{% static "/" %}logo_vsk.jpg" width="90px"/></div>
+          &nbsp<div class="attr2"><img src="{% static "/" %}VTBlogo1.png" width="90px"/></div>
+        </div>
+      </div>   
+      <br>
+      <ul>
+	<li><big>100%</big> гарантия возврата капитала</li>
+	<li>Контроль волатильности на уровне <big>11%</big></li>
+	<li>Индекс разработан на основе специального рейтинга, учитывающего рыночную капитализацию, ожидаемую волатильность и инвестиции компаний в исследования и разработки</li>
+	<li>Индекс показал высокие результаты в предыдущие годы - в среднем <big>17%</big> годовых в период 2006 - 2017 гг.</li>				
+      </ul>
 
-                    <!-- Detalles especificos del producto -->
-                    <div class="section" style="padding-bottom:5px;">
-                        <span style="font-size:1em">СТРАХОВАЯ КОМПАНИЯ: </span>
-			<br>
-                        <div>
-                            <div class="attr2"><img src="{% static "/" %}ingos2.jpg" width="90px"/></div>
-                            &nbsp<div class="attr2"><img src="{% static "/" %}allianz.jpg" width="90px"/></div>
-                            &nbsp<div class="attr2"><img src="{% static "/" %}logo_vsk.jpg" width="90px"/></div>
-                            &nbsp<div class="attr2"><img src="{% static "/" %}VTBlogo1.png" width="90px"/></div>
-                        </div>
-                    </div>   
-			    <br>
-			<ul>
-			    <li><big>100%</big> гарантия возврата капитала</li>
-			    <li>Контроль волатильности на уровне <big>11%</big></li>
-			    <li>Индекс разработан на основе специального рейтинга, учитывающего рыночную капитализацию, ожидаемую волатильность и инвестиции компаний в исследования и разработки</li>
-			    <li>Индекс показал высокие результаты в предыдущие годы - в среднем <big>17%</big> годовых в период 2006 - 2017 гг.</li>				
-			</ul>
-			
-					
-                    <!--<div class="section" style="padding-bottom:20px;">
-                        <h6 class="title-attr"><small>CANTIDAD</small></h6>                    
+      <!--<div class="section" style="padding-bottom:20px;">
+                  <h6 class="title-attr"><small>CANTIDAD</small></h6>                    
                         <div>
                             <div class="btn-minus"><span class="glyphicon glyphicon-minus"></span></div>
                             <input value="1" />
                             <div class="btn-plus"><span class="glyphicon glyphicon-plus"></span></div>
                         </div>
                     </div>            -->    
+      
+      <!-- Botones de compra -->
+      <div class="section" style="padding-bottom:20px">
+	<button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 
+	  ПРИОБРЕСТИ ПОЛИС
+	</button>
+        <a href="#"><small><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span>Добавить в сравнение</small></a>
+      </div>                                        
 
-                    <!-- Botones de compra -->
-                    <div class="section" style="padding-bottom:20px">
-			    <button class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> 
-				ПРИОБРЕСТИ ПОЛИС
-			    </button>
-                        <a href="#"><small><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span>Добавить в сравнение</small></a>
-                    </div>                                        
-                
-		</div>                              
+    </div>                              
 
-                <div class="col-xs-9">
-                    <ul class="menu-items">
-                        <li class="active">Общая информация</li>
-                        <li>Банки-партнеры</li>
-                        <li>Контроль волатильности</li>
-                    </ul>
-                    <div style="width:100%;border-top:1px solid silver">
-                        <p style="padding:15px;">			
-			    Продукт с участием в индексе SMEDOC30 Index. 
-				<br>100% защита капиталовложений, высокий доход, контроль волатильности. 
-				<br>Особенности данного продукта:
-                        </p>
-                        <ul>
-                            <li>Индекс за последние 4 года вырос на 24%</li>
-                            <li>Волатильность индекса составила 7.3%, что позволяет рассчитывать на высокий доход даже при консервативном контроле волатильности</li>
-                            <li>Отрасль медицинских препаратов в ближайшие 3 года освоит лекарство против рака и старения, что с высокой долей вероятности означает существеннй рост</li>
-                        </ul>  
-                    </div>
-                </div>		
-	</div>
+    <div class="col-xs-9">
+      <ul class="menu-items">
+        <li class="active">Общая информация</li>
+        <li>Банки-партнеры</li>
+        <li>Контроль волатильности</li>
+      </ul>
+      <div style="width:100%;border-top:1px solid silver">
+        <p style="padding:15px;">			
+	  Продукт с участием в индексе SMEDOC30 Index. 
+	  <br>100% защита капиталовложений, высокий доход, контроль волатильности. 
+	  <br>Особенности данного продукта:
+        </p>
+        <ul>
+          <li>Индекс за последние 4 года вырос на 24%</li>
+          <li>Волатильность индекса составила 7.3%, что позволяет рассчитывать на высокий доход даже при консервативном контроле волатильности</li>
+          <li>Отрасль медицинских препаратов в ближайшие 3 года освоит лекарство против рака и старения, что с высокой долей вероятности означает существеннй рост</li>
+        </ul>  
+      </div>
+    </div>		
+  </div>
 </div>
 {% endblock %}
