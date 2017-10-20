@@ -35,15 +35,18 @@ def product(request,id):
     x = pd.merge(x, x_months.agg({'Date': 'max'}), 'inner', ['Date'])
     
     b = x.rename(columns={'label': 'note'}).groupby(['bin', 'note'])
-    b = b.agg({'Date': 'min', 'Close': ['max', 'min']}).reset_index()
-    b.columns = b.columns.get_level_values(0)
-    b.columns = ['bin', 'note', 'closemax', 'closemin', 'Date']
-    b['r'] = np.array(b.closemax.astype(float))/np.array(b.closemin.astype(float)) - 1.0
-    b['ann'] = '39;' + b.r.apply(lambda x: str(round(100*x,1))) + '%39;'
+    b = b.agg({'Close': ['max', 'min'], 'Date': ['max', 'min']}).reset_index()
+    b.columns = ["".join(x).lower() for x in b.columns.ravel()]
+    b['bin1'] = b['bin'] + 1
+    b1 = b[['bin1', 'datemin']].rename(columns={'bin1': 'bin', 'datemin': 'd'})
+    b = pd.merge(b, b1, 'inner', 'bin')
+
+    b['r'] = b.closemax/b.closemin - 1
+    b['ann'] = '39;' + b.r.apply(lambda x: str(round(100*x, 1))) + '%39;'
     b.note = '39;' + b.note + '%39;'
-    x = pd.merge(x, b, 'left', 'Date')
+    x = pd.merge(x, b.rename(columns={'datemin': 'Date'}), 'left', 'Date')
     x.loc[x.ann != x.ann, 'ann'] = 'null'
 
     data = np.array(x.apply(lambda row: str(['new Date('+str(row.Date.date()).replace('-',',')+')', row.Close, row.Close*0.9, row.ann]), axis=1))
-    ticks = np.array(b.apply(lambda row: '{v: new Date('+str(row.Date.date()).replace('-',',')+'), f: ' + row.note + '}', axis=1))
+    ticks = np.array(b.apply(lambda row: '{v: new Date('+str(row.datemin.date()).replace('-',',')+'), f: ' + row.note + '}', axis=1))
     return render_to_response("story/" + product.templatepath, {'product': product, 'data': data, 'ticks' : ticks})

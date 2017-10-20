@@ -87,7 +87,7 @@ $(document).ready(function(){
     {{ data|safeseq|join:", "|cut:"'"|iescape|safe }}
 	    ]);
 
-    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+//    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
   var options = {
   legend: {'position': 'bottom'},
   title: "",
@@ -95,11 +95,11 @@ $(document).ready(function(){
   vAxis: { format: 'percent'},
   //  hAxis: { gridlines: { color: '#FFF' } },
   hAxis: { ticks: [ {{ ticks|safeseq|join:", "|cut:"'"|iescape|safe }} ]},
-  annotations: { style: 'point', textStyle: { fontSize: 12, bold: true, textAlign: 'bottom', opacity: 1 } },
+  annotations: { style: 'point', textStyle: { fontSize: 12, bold: true, textAlign: 'bottom', opacity: 1 }, stem: { length: 15 }, boxStyle: { stroke: '#888', strokeWidth: 1, rx: 3, ry: 3 } },
   chartArea: { width: '80%', height:'55%' }
   };
 
-  chart.draw(data, options);
+  (new google.visualization.LineChart(document.getElementById('chart_div'))).draw(data, options);
 
   }
 </script>	
