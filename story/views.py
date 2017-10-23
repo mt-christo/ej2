@@ -23,7 +23,7 @@ def product(request,id):
     x.Close = x.Close/x.Close[0]
     
     dates = ['2007-08-09', '2009-07-01', '2012-01-01', '2016-10-01']
-    labels = ["Pre-Crisis", "2008-2009 Crisis", "QE era", "Obama 2", "Trump era"]
+    labels = ["Pre-Crisis", "2008 Crisis", "QE era", "Obama 2", "Trump era"]
     intdates = pd.to_datetime(np.array(dates)).astype(np.int64)
     bins = pd.DataFrame({'bin': range(len(dates)+1), 'label': labels})
 
@@ -37,14 +37,15 @@ def product(request,id):
     b = x.rename(columns={'label': 'note'}).groupby(['bin', 'note'])
     b = b.agg({'Close': ['max', 'min'], 'Date': ['max', 'min']}).reset_index()
     b.columns = ["".join(x).lower() for x in b.columns.ravel()]
-    b['bin1'] = b['bin'] + 1
+    b['bin1'] = b['bin'] - 1
     b1 = b[['bin1', 'datemin']].rename(columns={'bin1': 'bin', 'datemin': 'd'})
-    b = pd.merge(b, b1, 'inner', 'bin')
+    b = pd.merge(b, b1, 'left', 'bin')
+    b.d = [x.datemax if (x.d != x.d) else x.d for index,x in b.iterrows()]
 
     b['r'] = b.closemax/b.closemin - 1
     b['ann'] = '39;' + b.r.apply(lambda x: str(round(100*x, 1))) + '%39;'
-    b.note = '39;' + b.note + '%39;'
-    x = pd.merge(x, b.rename(columns={'datemin': 'Date'}), 'left', 'Date')
+    b.note = '39;' + b.note + '39;'
+    x = pd.merge(x, b.rename(columns={'d': 'Date'}), 'left', 'Date')
     x.loc[x.ann != x.ann, 'ann'] = 'null'
 
     data = np.array(x.apply(lambda row: str(['new Date('+str(row.Date.date()).replace('-',',')+')', row.Close, row.Close*0.9, row.ann]), axis=1))

@@ -89,17 +89,20 @@ $(document).ready(function(){
 
 //    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
   var options = {
-  legend: {'position': 'bottom'},
+  legend: {'position': 'top'},
   title: "",
   curveType: 'function',
   vAxis: { format: 'percent'},
   //  hAxis: { gridlines: { color: '#FFF' } },
-  hAxis: { ticks: [ {{ ticks|safeseq|join:", "|cut:"'"|iescape|safe }} ]},
+  hAxis: { textStyle: { fontSize: 10 }, slantedText: 'true', showTextEvery: 1, textPosition: 'out', maxAlternation: 1, maxTextLines: 2, minTextSpacing: 0, ticks: [ {{ ticks|safeseq|join:", "|cut:"'"|iescape|safe }} ]},
   annotations: { style: 'point', textStyle: { fontSize: 12, bold: true, textAlign: 'bottom', opacity: 1 }, stem: { length: 15 }, boxStyle: { stroke: '#888', strokeWidth: 1, rx: 3, ry: 3 } },
   chartArea: { width: '80%', height:'55%' }
-  };
+  }; //, slantedTextAngle: 45
 
   (new google.visualization.LineChart(document.getElementById('chart_div'))).draw(data, options);
+  
+
+  var y, labels =  document.querySelectorAll('[text-anchor="middle"]');
 
   }
 </script>	
