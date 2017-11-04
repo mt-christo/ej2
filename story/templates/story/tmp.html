@@ -74,10 +74,17 @@
       height: 100%;
       margin-bottom: 10px;
   }
+  .vertical-align-np {
+    display: flex;
+    align-items: center;
+  }
   .vertical-align {
     display: flex;
     align-items: center;
     padding: 1em;
+  }
+  .left-margined {
+    margin-left: 10px
   }
   .carousel-control.right, .carousel-control.left {
       background-image: none;
@@ -119,7 +126,7 @@
   .panel-heading {
       color: #fff !important;
       background-color: #6688ff !important;
-      padding: 25px;
+      padding: 16px;
       border-bottom: 1px solid transparent;
       border-top-left-radius: 0px;
       border-top-right-radius: 0px;
@@ -143,7 +150,8 @@
   }
   .navbar {
       margin-bottom: 0;
-      background-color:rgba(86,90,119,0.99);
+//      background-color:rgba(86,90,119,1.0);
+      background-color:rgba(2,51,67,1.0);
       z-index: 9999;
       border: 0;
       font-size: 14px !important;
@@ -226,15 +234,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage"><img src="{% static "/" %}white_logo.png" style="background-color:rgba(86,90,119,0.99);margin-top:-10px;height:80px;border-radius:15px"</a>
+      <a class="navbar-brand" href="#myPage"><img src="{% static "/" %}verno-bird-white.png" style="background-color:rgba(2,51,67,0.0);margin-top:-15px;margin-left:-15px;height:45px;border-bottom-left-radius:15px;border-bottom-right-radius:15px;"></img></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#advantages">ADVANTAGES</a></li>
-        <li><a href="#partners">OUR PARTNERS</a></li>
+      <ul class="nav navbar-nav navbar-right vertical-align-np">
+        <li><a href="#advantages">ADVANTAGES<br></a></li>
+        <li><a href="#partners">OUR PARTNERS<br></a></li>
 <!--        <li><a href="#yourproducts">OFFERS FOR YOU</a></li>-->
-        <li><a href="#products">PRODUCTS</a></li>
-        <li><a href="#about">ABOUT US</a></li>
+        <li><a href="#products">PRODUCTS<br></a></li>
+        <li><a href="#about">ABOUT US<br></a></li>
+            <div class="input-group" style="width:25rem;padding-left:15px">
+              <input type="text" class="form-control" size="20" placeholder="Product search" required>
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-success">Find it!</button>
+              </div>
+            </div>
       </ul>
     </div>
   </div>
@@ -246,20 +260,43 @@
       <div class="col-sm-2">
       </div>
       <div class="col-sm-8">
-        <h1 style="letter-spacing:4px;font-weight:600">VERNOPOLIS</h1> 
+        <h1 style="letter-spacing:4px;font-weight:600">VERNO<img src="{% static "/" %}verno-bird-white.png" style="height:7rem;margin-top:-23px"></img>POLIS</h1> 
         <p>Safe participation in modern economy</p> 
-        <center><form style="width:40%;min-width:25rem">
-          <div class="input-group">
-            <input type="text" class="form-control" size="50" placeholder="Product search" required>
-            <div class="input-group-btn">
-              <button type="button" class="btn btn-success">Find it!</button>
+        <center>
+          <form style="width:40%;min-width:25rem">
+            <div class="input-group">
+              <input type="text" class="form-control" size="50" placeholder="Product search" required>
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-success">Find it!</button>
+              </div>
             </div>
-          </div>
-        </form></center>
+          </form>
+        </center>
         <br>
-        <button type="button" class="btn btn-success" style="height:70px;background-color:rgba(86,90,119,0.8);margin-left:10px">Participation<br>products</button>
-        <button type="button" class="btn btn-success" style="height:70px;background-color:rgba(86,90,119,0.8);margin-left:10px">Coupon Accrual<br>products</button>
-        <button type="button" class="btn btn-success" style="height:70px;background-color:rgba(86,90,119,0.8);margin-left:10px">Combo<br>products</button>
+        <br>
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle="tab" href="#Part">Part</a></li>
+          <li><a data-toggle="tab" href="#Coupon">Coupon</a></li>
+          <li><a data-toggle="tab" href="#Combo">Combo</a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="Part" class="tab-pane fade in active">
+            Part<br>
+            Part<br>
+          </div>
+          <div id="Coupon" class="tab-pane fade">
+            Part<br>
+            Part<br>
+          </div>
+          <div id="Combo" class="tab-pane fade">
+            Part<br>
+            Part<br>
+          </div>
+        </div>
+            
+        <button type="button" class="btn btn-success left-margined" style="height:70px;background-color:rgba(86,90,119,0.8)">Participation<br>products</button>
+        <button type="button" class="btn btn-success left-margined" style="height:70px;background-color:rgba(86,90,119,0.8)">Coupon Accrual<br>products</button>
+        <button type="button" class="btn btn-success left-margined" style="height:70px;background-color:rgba(86,90,119,0.8)">Combo<br>products</button>
       </div>
       <div class="col-sm-2">
       </div>
@@ -283,14 +320,14 @@
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-lock logo-small"></span>
-      <h4>100% money back<br>guaranteed</h4>
-      <p>We guarantee that your money will be safe and will return to you even in the worst case scenarios on the market</p>
+      <h4>100% principal<br>protection</h4>
+      <p>Our providers guarantee that your money will be safe and will return to you even in the worst case scenarios on the market</p>
       <br>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-signal logo-small"></span>
       <h4>Our products are<br>beyond competition</h4>
-      <p>We are investing your money in stocks, bonds and funds of most developed world economies and at best prices</p>
+      <p>We are investing your money in stocks, bonds and funds of most developed world economies at best prices</p>
       <br>
     </div>
   </div>
@@ -323,16 +360,16 @@
 <!-- Container (Pricing Section) -->
 <div id="partners" class="container-fluid container-fluid-limited text-center">
   <h2>Our partners</h2>
-  <h4>Every contract is guaranteed by a top and reliable insurance company</h4>
+  <h4>Every product is guaranteed by a top insurance company you can rely on</h4>
   <br><br>
-  <div class="row vertical-align">
+  <div class="row">
     <div class="col-sm-3">
       <a href="http://www.lifeingos.ru/"><img class="img-rounded logo-small" src="{% static "/" %}ingos2.jpg" width="100%"/></a>
       <br>
       <br>
     </div>
     <div class="col-sm-3">
-      <a href="http://www.allianz.ru/"><img class="img-rounded logo-small" src="{% static "/" %}allianz.jpg" width="100%"/></a>
+      <a href="http://www.allianz.ru/"><img class="img-rounded logo-small" src="{% static "/" %}allianz2.jpg" width="100%"/></a>
       <br>
       <br>
     </div>
@@ -499,10 +536,11 @@
       <h2>About us</h2>
       <h4>Our company offers investment service at a better level</h4>
       <p>
+      Vernopolis is an online marketplace for structured 
       <ul>
       <li>We pick the most <b>interesting</b> and <b>innovative</b> Investment Life Insurance products </li>
-      <br><li>We are able to get the <b>price</b>/<b>participation level</b> for the product that is  <b>beyond any competition</b> on the market </li> 
-      <br><li>We execute the deal in a technological and <b>convenient</b> way <b>directly</b> with insurance company of your choice</li>
+      <li>We are able to get the <b>price</b>/<b>participation level</b> for the product that is  <b>beyond any competition</b> on the market </li> 
+      <li>We execute the deal in a technological and <b>convenient</b> way <b>directly</b> with insurance company of your choice</li>
       </ul>
       </p>
       <!--<br><button class="btn btn-default btn-lg">Связаться с нами</button>-->
