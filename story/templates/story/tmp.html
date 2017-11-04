@@ -148,6 +148,25 @@
       background-color: #6688ff;
       color: #fff;
   }
+  .nav-tabs li a {
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      background-color: rgba(2,51,67,0.6);
+      border-bottom: 1px solid #fff;
+  }
+  .nav-tabs li.active a, .nav-tabs li.active a:focus, .nav-tabs li.active a:hover {
+      background-color: rgba(42,71,130,0.8);
+      border-bottom: 1px solid rgba(42,71,130,1.0);;
+  }
+  .nav-tabs li a:hover {
+      background-color: rgba(2,51,67,0.6);
+  }
+  .tab-content {
+      background-color: rgba(42,71,130,0.8);
+      border: 1px solid #fff;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+  }
   .navbar {
       margin-bottom: 0;
 //      background-color:rgba(86,90,119,1.0);
@@ -243,60 +262,45 @@
 <!--        <li><a href="#yourproducts">OFFERS FOR YOU</a></li>-->
         <li><a href="#products">PRODUCTS<br></a></li>
         <li><a href="#about">ABOUT US<br></a></li>
-            <div class="input-group" style="width:25rem;padding-left:15px">
+            <form><div class="input-group" style="width:25rem;padding-left:15px">
               <input type="text" class="form-control" size="20" placeholder="Product search" required>
               <div class="input-group-btn">
                 <button type="button" class="btn btn-success">Find it!</button>
               </div>
-            </div>
+            </div></form>
       </ul>
     </div>
   </div>
 </nav>
 
 <div class="jumbotron text-center">
-  <div class="container vertical-align" style="background-color:rgba(2,51,67,0.6);height:100%">
-    <div class="row">
+  <div class="container vertical-align" style="background-color:rgba(2,51,67,0.7);height:100%">
+    <div class="row" style="width:100%">
       <div class="col-sm-2">
       </div>
       <div class="col-sm-8">
-        <h1 style="letter-spacing:4px;font-weight:600">VERNO<img src="{% static "/" %}verno-bird-white.png" style="height:7rem;margin-top:-23px"></img>POLIS</h1> 
+        <img src="{% static "/" %}verno-bird-white.png" style="height:7rem;margin-top:-23px"></img>
+        <h1 style="letter-spacing:4px;font-weight:600">VERNOPOLIS</h1> 
         <p>Safe participation in modern economy</p> 
-        <center>
-          <form style="width:40%;min-width:25rem">
-            <div class="input-group">
-              <input type="text" class="form-control" size="50" placeholder="Product search" required>
-              <div class="input-group-btn">
-                <button type="button" class="btn btn-success">Find it!</button>
-              </div>
-            </div>
-          </form>
-        </center>
-        <br>
-        <br>
-        <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#Part">Part</a></li>
-          <li><a data-toggle="tab" href="#Coupon">Coupon</a></li>
-          <li><a data-toggle="tab" href="#Combo">Combo</a></li>
+        <ul class="nav nav-tabs" style="border: 0px solid transparent;">
+          <li class="active"><a data-toggle="tab" href="#Part" style="color:#fff;font-size:1.7rem;padding:15px"><span class="glyphicon glyphicon-signal logo-small"></span><br>PARTICIPATION</a></li>
+          <li><a data-toggle="tab" href="#WO" style="color:#fff;font-size:1.7rem;padding:15px"><span class="glyphicon glyphicon-tag logo-small"></span><br>WORST-OF ACCRUAL</a></li>
+          <li><a data-toggle="tab" href="#HWM" style="color:#fff;font-size:1.7rem;padding:15px"><span class="glyphicon glyphicon-arrow-up logo-small"></span><br>HIGH WATER-MARK</a></li>
         </ul>
         <div class="tab-content">
           <div id="Part" class="tab-pane fade in active">
             Part<br>
             Part<br>
           </div>
-          <div id="Coupon" class="tab-pane fade">
+          <div id="WO" class="tab-pane fade">
             Part<br>
             Part<br>
           </div>
-          <div id="Combo" class="tab-pane fade">
+          <div id="HWM" class="tab-pane fade">
             Part<br>
             Part<br>
           </div>
         </div>
-            
-        <button type="button" class="btn btn-success left-margined" style="height:70px;background-color:rgba(86,90,119,0.8)">Participation<br>products</button>
-        <button type="button" class="btn btn-success left-margined" style="height:70px;background-color:rgba(86,90,119,0.8)">Coupon Accrual<br>products</button>
-        <button type="button" class="btn btn-success left-margined" style="height:70px;background-color:rgba(86,90,119,0.8)">Combo<br>products</button>
       </div>
       <div class="col-sm-2">
       </div>
