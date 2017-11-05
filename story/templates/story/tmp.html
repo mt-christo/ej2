@@ -41,7 +41,7 @@
       background-size: cover; 
       color: #fff;
       padding: 0px 25px;
-      height : 900px;
+      height : 100vh;
       font-family: Montserrat, sans-serif;
   }
   .container-fluid {
@@ -155,15 +155,16 @@
       color: #fff;
   }
   .nav-tabs li a {
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
-      background-color: rgba(255,255,255,0.6); //rgba(22,51,110,0.8);
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      background-color: rgba(255,255,255,0.7); //rgba(22,51,110,0.8);
       border-bottom: 1px solid #fff;
-      color:#000;
+      color:rgba(2,51,67,1.0);
       font-size:1.3rem;
       padding:10px
   }
   .nav-tabs li.active a, .nav-tabs li.active a:focus, .nav-tabs li.active a:hover {
+      color: rgba(2,51,255,1.0);
       background-color: rgba(255,255,255,1.0); //rgba(22,51,110,0.8);
       border-bottom: 1px solid rgba(255,255,255,1.0); //rgba(22,51,110,1.0);;
   }
@@ -176,6 +177,11 @@
       border: 1px solid #fff;
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
+  }
+  .tab-content-row {
+      width:100%;
+      text-align:justify;
+      padding:1.5rem;
   }
   .navbar {
       margin-bottom: 0;
@@ -272,7 +278,7 @@
 <!--        <li><a href="#yourproducts">OFFERS FOR YOU</a></li>-->
         <li><a href="#products">PRODUCTS<br></a></li>
         <li><a href="#about">ABOUT US<br></a></li>
-            <form><div class="input-group" style="width:25rem;padding-left:15px">
+            <form><div class="input-group" style="width:28rem;padding-left:20px">
               <input type="text" class="form-control" size="20" placeholder="Product search" required>
               <div class="input-group-btn">
                 <button type="button" class="btn btn-success">Find it!</button>
@@ -300,30 +306,58 @@
         </ul>
         <div class="tab-content">
           <div id="Part" class="tab-pane fade in active">
-            <div class="row" style="width:100%;text-align:justify;padding:10px">
-              <div class="col-sm-12" style="font-size:12px;color:#000">
-                Participation products allow investor to participate in world's most developed markets' economies at no risk. They are basically Call options in specific industrial indices or custom baskets.
-                <br>
-                <div class="row text-center">
-                  {% for product in products|slice:":4" %}    
-                  <div class="col-sm-3" style="padding:0.8rem">
-                    <div class="well well-sm" style="border:0px;background-color:rgba(150, 200, 255, 0.5);margin:1rem;padding:0rem">
-                      <a href="product/{{ product.id }}"><img src="{% static "/" %}{{ product.logopath }}" style="width:100%"/></a>
-                      <a style="color:#000;"><b style="font-size:14px">{{ product.titlethumb|safe }}</b><br>Участие: <b style="font-size:14px">57%</b></a>
-                    </div>
+            <div class="row tab-content-row">
+              <div class="col-sm-12">
+                <p style="font-size:14px;color:#000;">Participation products allow investor to participate in world's most developed economies <b>at no risk</b>. They are basically Call options on specific industrial indices or custom baskets of stocks. Currently offered Participation products:</p>
+                {% for product in products|slice:":4" %}    
+                <a href="product/{{ product.id }}" style="text-decoration:none">
+                  <div class="well well-sm" style="display:table-cell;vertical-align:bottom;border:0px;background:url('{% static "/" %}{{ product.logopath }}');background-size:cover;padding:0rem;height:150px;width:150px;border-radius:7px;color:#000">
+                    <p style="background-color:rgba(200, 230, 255, 0.85);text-align:center;line-height:1.7;font-size:14px">
+                      <b>{{ product.titlethumb|safe }}</b>
+                      <br>
+                      Участие: <b>57%</b>
+                    </p>
                   </div>
-                  {% endfor %}
-                </div>
+                </a>
+                {% endfor %}
               </div>
             </div>
           </div>
           <div id="WO" class="tab-pane fade">
-            Part<br>
-            Part<br>
+            <div class="row tab-content-row">
+              <div class="col-sm-12">
+                <p style="font-size:14px;color:#000;">Worst-of coupon accrual products pay investor a fixed coupon at the end of every period, if during that period the worst-performing stock performed <b>above</b> the strike level initially agreed upon. Currently offered Worst-Of coupon products:</p>
+                {% for product in products|slice:":4" %}    
+                <a href="product/{{ product.id }}" style="text-decoration:none">
+                  <div class="well well-sm" style="display:table-cell;vertical-align:bottom;border:0px;background:url('{% static "/" %}{{ product.logopath }}');background-size:cover;padding:0rem;height:150px;width:150px;border-radius:7px;color:#000">
+                    <p style="background-color:rgba(200, 230, 255, 0.85);text-align:center;line-height:1.7;font-size:14px">
+                      <b>{{ product.titlethumb|safe }}</b>
+                      <br>
+                      Участие: <b>57%</b>
+                    </p>
+                  </div>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
           </div>
           <div id="HWM" class="tab-pane fade">
-            Part<br>
-            Part<br>
+            <div class="row tab-content-row">
+              <div class="col-sm-12">
+                <p style="font-size:14px;color:#000;">High Water-Mark products allow investor to participate in market growth and not worry about drawdowns - investor participates in <b>maximum observed growth</b> of the underlying during the life of the product. Currently offered High Water-Mark products:</p>
+                {% for product in products|slice:":4" %}    
+                <a href="product/{{ product.id }}" style="text-decoration:none">
+                  <div class="well well-sm" style="display:table-cell;vertical-align:bottom;border:0px;background:url('{% static "/" %}{{ product.logopath }}');background-size:cover;padding:0rem;height:150px;width:150px;border-radius:7px;color:#000">
+                    <p style="background-color:rgba(200, 230, 255, 0.85);text-align:center;line-height:1.7;font-size:14px">
+                      <b>{{ product.titlethumb|safe }}</b>
+                      <br>
+                      Участие: <b>57%</b>
+                    </p>
+                  </div>
+                </a>
+                {% endfor %}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -344,7 +378,7 @@
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-tower logo-small"></span>
       <h4>Only reliable<br>insurance companies</h4>
-      <p>We work with top insurance companies: Allianz, &nbsp VSK, &nbsp VTB Life, &nbsp Ingosstrakh</p>
+      <p>We work with top insurance companies: Allianz, <!--&nbsp VSK,--> &nbsp VTB Life, &nbsp Ingosstrakh</p>
       <br>
     </div>
     <div class="col-sm-4">
@@ -392,22 +426,22 @@
   <h4>Every product is guaranteed by a top insurance company you can rely on</h4>
   <br><br>
   <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-4">
       <a href="http://www.lifeingos.ru/"><img class="img-rounded logo-small" src="{% static "/" %}ingos2.jpg" width="100%"/></a>
       <br>
       <br>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-4">
       <a href="http://www.allianz.ru/"><img class="img-rounded logo-small" src="{% static "/" %}allianz2.jpg" width="100%"/></a>
       <br>
       <br>
     </div>
-    <div class="col-sm-3">
+<!--    <div class="col-sm-3">
       <a href="https://www.vsk.ru/individuals/health/"><img class="img-rounded logo-small" src="{% static "/" %}logo_vsk.jpg" width="100%"/></a>
       <br>
       <br>
-    </div>
-    <div class="col-sm-3">
+    </div>-->
+    <div class="col-sm-4">
       <a href="https://vtbinslife.ru/"><img class="img-rounded logo-small" src="{% static "/" %}VTBlogo1.png" width="100%"/></a>
       <br>
       <br>
