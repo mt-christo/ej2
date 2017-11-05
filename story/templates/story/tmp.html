@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
   <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Bootstrap Theme Company Page</title>
+  <title>Vernopolis online marketplace</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -40,8 +40,8 @@
       background-position: center center;
       background-size: cover; 
       color: #fff;
-  padding: 0px 25px;
-  height : 800px;
+      padding: 0px 25px;
+      height : 900px;
       font-family: Montserrat, sans-serif;
   }
   .container-fluid {
@@ -55,6 +55,12 @@
   }
   .bg-grey {
       background-color: #f6f6f6;
+  }
+  .logo-light {
+      color: rgba(0, 79, 255, 1.0);
+      font-size: 25px;
+      padding-bottom: 5px;
+      padding-top: 5px;
   }
   .logo-small {
       color: #6666ff;
@@ -151,18 +157,22 @@
   .nav-tabs li a {
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
-      background-color: rgba(2,51,67,0.6);
+      background-color: rgba(255,255,255,0.6); //rgba(22,51,110,0.8);
       border-bottom: 1px solid #fff;
+      color:#000;
+      font-size:1.3rem;
+      padding:10px
   }
   .nav-tabs li.active a, .nav-tabs li.active a:focus, .nav-tabs li.active a:hover {
-      background-color: rgba(42,71,130,0.8);
-      border-bottom: 1px solid rgba(42,71,130,1.0);;
+      background-color: rgba(255,255,255,1.0); //rgba(22,51,110,0.8);
+      border-bottom: 1px solid rgba(255,255,255,1.0); //rgba(22,51,110,1.0);;
   }
   .nav-tabs li a:hover {
-      background-color: rgba(2,51,67,0.6);
+      background-color: rgba(255,255,255,0.8); //rgba(22,51,110,0.8);
   }
   .tab-content {
-      background-color: rgba(42,71,130,0.8);
+//      background-color: rgba(22,51,110,0.8);
+      background-color: rgba(255,255,255,1.0);
       border: 1px solid #fff;
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
@@ -274,25 +284,38 @@
 </nav>
 
 <div class="jumbotron text-center">
-  <div class="container vertical-align" style="background-color:rgba(2,51,67,0.7);height:100%">
+  <div class="container vertical-align" style="background-color:rgba(2,51,67,0.75);height:100%">
     <div class="row" style="width:100%">
       <div class="col-sm-2">
       </div>
       <div class="col-sm-8">
         <img src="{% static "/" %}verno-bird-white.png" style="height:7rem;margin-top:-23px"></img>
-        <h1 style="letter-spacing:4px;font-weight:600">VERNOPOLIS</h1> 
+        <h1 style="letter-spacing:1px;font-weight:500">VERNOPOLIS</h1> 
         <p>Safe participation in modern economy</p>
         <br>
-        <br>
         <ul class="nav nav-tabs" style="border: 0px solid transparent;font-weight:600;">
-          <li class="active"><a data-toggle="tab" href="#Part" style="color:#fff;font-size:1.7rem;padding:15px"><span class="glyphicon glyphicon-signal logo-small"></span><br>PARTICIPATION</a></li>
-          <li><a data-toggle="tab" href="#WO" style="color:#fff;font-size:1.7rem;padding:15px"><span class="glyphicon glyphicon-tag logo-small"></span><br>WORST-OF ACCRUAL</a></li>
-          <li><a data-toggle="tab" href="#HWM" style="color:#fff;font-size:1.7rem;padding:15px"><span class="glyphicon glyphicon-arrow-up logo-small"></span><br>HIGH WATER-MARK</a></li>
+          <li class="active"><a data-toggle="tab" href="#Part"><span class="glyphicon glyphicon-signal logo-light"></span><br>PARTICIPATION</a></li>
+          <li><a data-toggle="tab" href="#WO"><span class="glyphicon glyphicon-tag logo-light"></span><br>WORST-OF ACCRUAL</a></li>
+          <li><a data-toggle="tab" href="#HWM"><span class="glyphicon glyphicon-arrow-up logo-light"></span><br>HIGH WATER-MARK</a></li>
         </ul>
         <div class="tab-content">
           <div id="Part" class="tab-pane fade in active">
-            Part<br>
-            Part<br>
+            <div class="row" style="width:100%;text-align:justify;padding:10px">
+              <div class="col-sm-12" style="font-size:12px;color:#000">
+                Participation products allow investor to participate in world's most developed markets' economies at no risk. They are basically Call options in specific industrial indices or custom baskets.
+                <br>
+                <div class="row text-center">
+                  {% for product in products|slice:":4" %}    
+                  <div class="col-sm-3" style="padding:0.8rem">
+                    <div class="well well-sm" style="border:0px;background-color:rgba(150, 200, 255, 0.5);margin:1rem;padding:0rem">
+                      <a href="product/{{ product.id }}"><img src="{% static "/" %}{{ product.logopath }}" style="width:100%"/></a>
+                      <a style="color:#000;"><b style="font-size:14px">{{ product.titlethumb|safe }}</b><br>Участие: <b style="font-size:14px">57%</b></a>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
           </div>
           <div id="WO" class="tab-pane fade">
             Part<br>
