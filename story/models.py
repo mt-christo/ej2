@@ -6,6 +6,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255, default='[NO NAME]')
     titlethumb = models.CharField(max_length=2000, default='')
     titlecard = models.CharField(max_length=2000, default='')
+    producttypedesc = models.CharField(max_length=2000, default='')
     logopath = models.CharField(max_length=255, default='')
     explainpath = models.CharField(max_length=255, default='')
     explainpath2 = models.CharField(max_length=255, default='')

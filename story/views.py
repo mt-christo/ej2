@@ -11,7 +11,14 @@ import random
 
 def allproducts(request):
     #return render_to_response("story/allproducts.html", {'products' : Product.objects.all()})
-    return render_to_response("story/tmp.html", {'products' : Product.objects.all()})
+    #return render_to_response("story/tmp.html", {'products' : Product.objects.all()})
+    return render_to_response("story/home.html", {'products' : Product.objects.all()})
+
+def infopart(request):
+    return render_to_response("story/info-participation.html")
+
+def infowo(request):
+    return render_to_response("story/info-worst-of.html")
 
 def product(request,id):
     product = Product.objects.get(pk=id)
