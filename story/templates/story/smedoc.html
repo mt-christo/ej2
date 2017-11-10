@@ -110,9 +110,10 @@ $(document).ready(function(){
 {% endblock %}
 
 {% block content %}
-<br>
-
-
+  <div class="container" style="background-color:white;color:#000;height:100%;padding-top:60px;text-align:left">
+    <div class="row" style="width:100%">
+      <div class="col-sm-12">
+        
 <div class="container">	
   <div class="row">
     <div class="col-sm-6 item-photo">
@@ -133,19 +134,17 @@ $(document).ready(function(){
     <div class="col-sm-6" style="border:0px solid gray">
       <p>
 	<br>
-	<span style="font-size:2em">{{ product.titlecard }}</span>
+	<span style="font-size:2.5rem">{{ product.titlecard }}</span>
 	<br>
-	<span style="font-size:1.2em">Участие в секторальном индексе</span>
+	<span style="font-size:1.7rem">Участие в секторальном индексе</span>
 	<br>
-        <br>
-	<span style="font-size:1em">УЧАСТИЕ: </span>
-	<span style="font-size:2em;font-weight:bold">{{ product.participation }}</span>
+	<span style="font-size:1.7rem">УЧАСТИЕ: </span>
+	<span style="font-size:2rem;font-weight:bold">{{ product.participation }}</span>
       </p>
-      <br>
      
       <!-- Detalles especificos del producto -->
       <div class="section" style="padding-bottom:5px;">
-        <span style="font-size:1em">СТРАХОВАЯ КОМПАНИЯ: </span>
+        <span style="font-size:1rem">СТРАХОВАЯ КОМПАНИЯ: </span>
 	<br>
         <div>
           <div class="attr2"><img src="{% static "/" %}ingos2.jpg" width="90px"/></div>
@@ -181,17 +180,21 @@ $(document).ready(function(){
 
     </div>                              
 
-    <div class="col-xs-9">
-      <ul class="menu-items">
-        <li class="active">Общая информация</li>
-        <li>Банки-партнеры</li>
-        <li>Контроль волатильности</li>
-      </ul>
-      <div style="width:100%;border-top:1px solid silver">
-        <p style="padding:15px;">			
-	  Продукт с участием в индексе SMEDOC30 Index. 
-	  <br>100% защита капиталовложений, высокий доход, контроль волатильности. 
-	  <br>Особенности данного продукта:
+    <div class="col-xs-12">
+
+
+
+
+
+        <ul class="nav nav-tabs nav-tabs-nb" style="border:0;list-style-type:none;font-size:11px;display:inline-flex;margin-bottom:0px;margin-top:20px;cursor: pointer;">
+          <li class="active"><a data-toggle="tab" href="#id1">Информация о продукте</a></li>
+          <li><a data-toggle="tab" href="#id2">Базовый актив</a></li>
+          <li><a data-toggle="tab" href="#id3">Контроль волатильности</li>
+        </ul>
+        <div class="tab-content">
+       <div id="id1" class="tab-pane active" style="width:100%;border-top:1px solid silver">
+        <p style="padding:15px;font-size:1.7rem">			
+	  Продукт с участием в индексе SMEDOC30 Index. 100% защита капиталовложений, высокий доход, контроль волатильности. Особенности данного продукта:
         </p>
         <ul>
           <li>Индекс за последние 4 года вырос на 24%</li>
@@ -199,7 +202,29 @@ $(document).ready(function(){
           <li>Отрасль медицинских препаратов в ближайшие 3 года освоит лекарство против рака и старения, что с высокой долей вероятности означает существеннй рост</li>
         </ul>  
       </div>
+      <div id="id2" class="tab-pane" style="width:100%;border-top:1px solid silver">
+        <p style="padding:15px;font-size:1.7rem">			
+	  Продукт с участием в индексе SMEDOC30 Index. 100% защита капиталовложений, высокий доход, контроль волатильности. Особеddddddddнности данного продукта:
+        </p>
+        <ul>
+          <li>Индекс за последние 4 года вырос на 24%</li>
+          <li>Волатильность индекса составила 7.3%, что позволяет рассчитывать на высокий доход даже при консервативном контроле волатильности</li>
+          <li>Отрасль медицинских препаратов в ближайшие 3 года освоит лекарство против рака и старения, что с высокой долей вероятности означает существеннй рост</li>
+        </ul>  
+      </div>
+       </div>
+
+
+
+
+
+
     </div>		
   </div>
 </div>
+
+      </div>
+    </div>
+  </div>
+
 {% endblock %}

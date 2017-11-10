@@ -36,7 +36,7 @@
   }  
   .jumbotron {
       background-color: #6688ff;
-      background-image: url(https://static.pexels.com/photos/280384/pexels-photo-280384.jpeg);
+      background-image: url(https://static.pexels.com/photos/26681/pexels-photo-26681.jpg);
       background-position: center center;
       background-size: cover; 
       color: #000;
@@ -58,9 +58,15 @@
   }
   .logo-light {
       color: rgba(0, 79, 255, 1.0);
-      font-size: 25px;
-      padding-bottom: 5px;
-      padding-top: 5px;
+      font-size: 16px;
+      padding-bottom: 0px;
+      padding-top: 0px;
+  }
+  .logo-char {
+      color: rgba(76,80,219,1.0);
+      font-size: 18px;
+      padding-bottom: 0px;
+      padding-top: 0px;
   }
   .logo-small {
       color: #6666ff;
@@ -155,26 +161,46 @@
       color: #fff;
   }
   .nav-tabs li a {
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
+      border-top-left-radius: 7px;
+      border-top-right-radius: 7px;
       background-color: rgba(255,255,255,0.7); //rgba(22,51,110,0.8);
-      border-bottom: 1px solid #fff;
       color:rgba(2,51,67,1.0);
       font-size:1.3rem;
-      padding:10px
+      padding:10px;
+      padding-left:15px;
+      padding-right:15px;
+      border:0;
   }
   .nav-tabs li.active a, .nav-tabs li.active a:focus, .nav-tabs li.active a:hover {
       color: rgba(2,51,255,1.0);
       background-color: rgba(255,255,255,1.0); //rgba(22,51,110,0.8);
-      border-bottom: 1px solid rgba(255,255,255,1.0); //rgba(22,51,110,1.0);;
+      padding:10px;
+      padding-left:15px;
+      padding-right:15px;
+      border:0;
   }
   .nav-tabs li a:hover {
+      background-color: rgba(255,255,255,0.8); //rgba(22,51,110,0.8);
+      border:0;
+  }
+  .nav-tabs-nb li a {
+      background-color: rgba(255,255,255,0.7); //rgba(22,51,110,0.8);
+      padding:0px
+      border:0;
+  }
+  .nav-tabs-nb li.active a, .nav-tabs li.active a:focus, .nav-tabs li.active a:hover {
+      border: 0;
+      color: rgba(2,51,255,1.0);
+      background-color: rgba(255,255,255,1.0); //rgba(22,51,110,0.8);
+  }
+  .nav-tabs-nb li a:hover {
+      border: 0;
       background-color: rgba(255,255,255,0.8); //rgba(22,51,110,0.8);
   }
   .tab-content {
 //      background-color: rgba(22,51,110,0.8);
       background-color: rgba(255,255,255,1.0);
-      border: 1px solid #fff;
+      border:0;
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
   }
@@ -183,32 +209,41 @@
       text-align:justify;
       padding:1.5rem;
   }
+  .tab-pane {
+      width:100%;
+      text-align:justify;
+      padding:1.5rem;
+  }
   .well-product {
-      display:table-cell;
-      vertical-align:bottom;
+//      display:table-cell;
+  //      vertical-align:bottom;
+  position:relative;
       border:0px;
-      padding:0rem;
-      height:170px;
-      width:170px;
+      padding:0px;
+      height:200px;
+  //      width:170px;
+  witdh:100%;
+  margin:0px;
       border-radius:7px;
       color:#000;
   }
   .product-thumb-p {
       position:absolute;
-      width:170px;
-      bottom:-8px;
+      width:100%;
+      bottom:0;
       border-bottom-left-radius:7px;
       border-bottom-right-radius:7px;
       background-color:rgba(200, 230, 255, 0.8);
       text-align:center;
-      line-height:1.5;
-      padding-top:5px;
-      padding-bottom:5px;
+      line-height:1.8;
+//      padding-top:5px;
+//      padding-bottom:5px;
+padding-top:5px;
   }
   .navbar {
       margin-bottom: 0;
-//      background-color:rgba(86,90,119,1.0);
-      background-color:rgba(2,51,67,1.0);
+      background-color:rgba(76,80,109,1.0);
+//      background-color:rgba(2,51,67,1.0);
       z-index: 9999;
       border: 0;
       font-size: 14px !important;
@@ -241,6 +276,15 @@
       -webkit-animation-duration: 1s;
       visibility: visible;
   }
+
+
+input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+dt:after { content: " .................................................................................." }
+  
+  
   @keyframes slide {
     0% {
       opacity: 0;
@@ -296,7 +340,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage"><img src="{% static "/" %}verno-bird-white.png" style="background-color:rgba(2,51,67,0.0);margin-top:-15px;margin-left:-15px;height:45px;border-bottom-left-radius:15px;border-bottom-right-radius:15px;"></img></a>
+      <a class="navbar-brand" href="/"><img src="{% static "/" %}verno-bird-white.png" style="background-color:rgba(2,51,67,0.0);margin-top:-15px;margin-left:-15px;height:45px;border-bottom-left-radius:15px;border-bottom-right-radius:15px;"></img></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right vertical-align-np">
@@ -305,12 +349,26 @@
 <!--        <li><a href="#yourproducts">OFFERS FOR YOU</a></li>-->
         <li><a href="#products">PRODUCTS<br></a></li>
         <li><a href="#about">ABOUT US<br></a></li>
-            <form><div class="input-group" style="width:28rem;padding-left:20px">
-              <input type="text" class="form-control" size="20" placeholder="Product search" required>
+        <form>
+            <div class="input-group" style="width:28rem;padding-left:20px">
+              <input type="text" class="form-control" size="20" placeholder="Product search"  list="somethingelse" required/>
+	      <datalist id="somethingelse">
+		<option value="Something"></option>
+		<option value="Something Else"></option>
+		<option value="Another One"></option>
+		<option value="Alpha"></option>
+		<option value="Bravo"></option>
+		<option value="Charlie"></option>
+		<option value="Delta"></option>
+		<option value="Echo"></option>
+		<option value="Foxtrot"></option>
+		<option value="Gamma"></option>
+	      </datalist>
               <div class="input-group-btn">
                 <button type="button" class="btn btn-success">Find it!</button>
               </div>
-            </div></form>
+            </div>
+        </form>
       </ul>
     </div>
   </div>
@@ -365,7 +423,7 @@ $(document).ready(function(){
         }
     });
   });
-})
+
 </script>
 
 </body>

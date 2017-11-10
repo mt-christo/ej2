@@ -1,0 +1,82 @@
+
+{% extends "story/base.html" %}
+{% load static %}
+{% load iescape %}
+
+
+{% block content %}
+  <div class="container vertical-align" style="background-color:rgba(2,51,67,0.55);color:#fff;height:100%">
+    <div class="row" style="width:100%">
+      <div class="col-sm-2">
+      </div>
+      <div class="col-sm-8">
+        <img src="{% static "/" %}verno-bird-white.png" style="height:7rem;margin-top:-23px"></img>
+        <h1 style="letter-spacing:1px;font-weight:500">VERNOPOLIS</h1> 
+        <p>Safe participation in modern economy</p>
+        <br>
+        <ul class="nav nav-tabs" style="border: 0px solid transparent;font-weight:600;">
+          <li class="active"><a data-toggle="tab" href="#Part"><span class="glyphicon glyphicon-signal logo-light"></span>&nbsp&nbspPARTICIPATION</a></li>
+          <li><a data-toggle="tab" href="#WO"><span class="glyphicon glyphicon-tag logo-light"></span>&nbsp&nbspWORST-OF ACCRUAL</a></li>
+          <li><a data-toggle="tab" href="#HWM"><span class="glyphicon glyphicon-arrow-up logo-light"></span>&nbsp&nbspHIGH WATER-MARK</a></li>
+        </ul>
+        <div class="tab-content">
+          <div id="Part" class="tab-pane fade in active">
+            <p style="font-size:14px;color:#000;"><a href="info-participation.html">Participation products</a> allow investor to participate in world's most developed economies <b>at no risk</b>. They are basically Call options on specific industrial indices or custom baskets of stocks. Currently offered Participation products:</p>
+            {% for product in products|slice:":4" %}    
+            <a href="product/{{ product.id }}" style="text-decoration:none">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-3" style="padding:0px;">
+              <div class="well well-sm well-product" style="background:url('{% static "/" %}{{ product.logopath }}');background-size:cover;">
+                <div class="product-thumb-p" style="font-size:14px">
+                  <b>{{ product.titlethumb|safe }}</b>
+                  <br>
+                  <span class="glyphicon glyphicon-signal logo-char" title="Participation rate"></span> 57%&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-equalizer logo-char" style="transform:scaleX(-1);" title="Average annual backtest result"></span> 32%
+                  <br>
+                  <p style="font-size:11px;line-height:1.2;text-align:center;padding-left:10px;padding-right:10px;margin-bottom:8px">{{ product.titlecard|safe }}</p>
+                </div>
+              </div>
+              </div></div></div>
+            </a>
+            {% endfor %}
+          </div>
+          <div id="WO" class="tab-pane fade">
+            <p style="font-size:14px;color:#000;"><a href="info-worst-of.html">Worst-of coupon products</a> pay investor a fixed coupon at the end of every period, if during that period the worst-performing stock performed <b>above</b> the strike level initially agreed upon. Currently offered Worst-Of coupon products:</p>
+            {% for product in products|slice:":4" %}    
+            <a href="product/{{ product.id }}" style="text-decoration:none">
+              <div class="well well-sm well-product" style="background:url('{% static "/" %}{{ product.logopath }}');background-size:cover;">
+                <p class="product-thumb-p" style="font-size:14px">
+                  <b>{{ product.titlethumb|safe }}</b>
+                  <br>
+                  <small style="font-size:12px">{{ product.producttypedesc|safe }}</small>
+                  <br>
+                  Участие: <b>57%</b>
+                </p>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+          <div id="HWM" class="tab-pane fade">
+            <p style="font-size:14px;color:#000;">High Water-Mark products allow investor to participate in market growth and not worry about drawdowns - investor participates in <b>maximum observed growth</b> of the underlying during the life of the product. Currently offered High Water-Mark products:</p>
+            {% for product in products|slice:":4" %}    
+            <a href="product/{{ product.id }}" style="text-decoration:none">
+              <div class="well well-sm well-product" style="background:url('{% static "/" %}{{ product.logopath }}');background-size:cover;">
+                <p class="product-thumb-p" style="font-size:14px">
+                  <b>{{ product.titlethumb|safe }}</b>
+                  <br>
+                  <small style="font-size:12px">{{ product.producttypedesc|safe }}</small>
+                  <br>
+                  Участие: <b>57%</b>
+                </p>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2">
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
