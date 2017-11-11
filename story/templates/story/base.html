@@ -8,6 +8,7 @@
   <title>Vernopolis online marketplace</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
@@ -235,7 +236,7 @@
       bottom:0;
       border-bottom-left-radius:7px;
       border-bottom-right-radius:7px;
-      background-color:rgba(200, 230, 255, 0.85);
+      background-color:rgba(200, 230, 255, 0.8);
       text-align:center;
       line-height:1.8;
 //      padding-top:5px;
@@ -284,7 +285,6 @@ input::-webkit-calendar-picker-indicator {
   display: none;
 }
 
-dt:after { content: " .................................................................................." }
   
   
   @keyframes slide {
@@ -351,6 +351,14 @@ dt:after { content: " ..........................................................
 <!--        <li><a href="#yourproducts">OFFERS FOR YOU</a></li>-->
         <li><a href="#products">PRODUCTS<br></a></li>
         <li><a href="#about">ABOUT US<br></a></li>
+        <form>
+          <div class="input-group" style="width:28rem;padding-left:20px">
+            <input id="advanced-demo" autofocus type="text" size="20" name="q" placeholder="Product search" style="line-height:2;padding-left:5px">
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-success">Find it!</button>
+            </div>
+          </div>
+        </form>
 <!--        <form>
             <div class="input-group" style="width:28rem;padding-left:20px">
               <input type="text" class="form-control" size="20" placeholder="Product search"  list="somethingelse" required/>
@@ -364,9 +372,6 @@ dt:after { content: " ..........................................................
             </div>
 </form>-->
       </ul>
-<form onsubmit="return false;" class="pure-form" style="margin:30px 0 40px">
-            <input id="advanced-demo" autofocus type="text" name="q" placeholder="Country or language code ..." style="width:100%;max-width:600px;outline:0">
-        </form>
     </div>
   </div>
 </nav>
@@ -386,7 +391,7 @@ dt:after { content: " ..........................................................
   <p>Bootstrap Theme Adapted By <a href="https://www.w3schools.com" title="Visit w3schools">AA+</a></p>
 </footer>
 
-<script>
+<script  type="text/plain">
 $(document).ready(function(){
   // Add smooth scrolling to all links in navbar + footer link
   $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
@@ -440,7 +445,7 @@ $(document).ready(function(){
 
         var demo2 = new autoComplete({
             selector: '#advanced-demo',
-            minChars: 0,
+            minChars: 1,
             source: function(term, suggest){
                 term = term.toLowerCase();
                 var choices = [['Australia', 'au'], ['Austria', 'at'], ['Brasil', 'br'], ['Bulgaria', 'bg'], ['Canada', 'ca'], ['China', 'cn'], ['Czech Republic', 'cz'], ['Denmark', 'dk'], ['Finland', 'fi'], ['France', 'fr'], ['Germany', 'de'], ['Hungary', 'hu'], ['India', 'in'], ['Italy', 'it'], ['Japan', 'ja'], ['Netherlands', 'nl'], ['Norway', 'no'], ['Portugal', 'pt'], ['Romania', 'ro'], ['Russia', 'ru'], ['Spain', 'es'], ['Swiss', 'ch'], ['Turkey', 'tr'], ['USA', 'us']];
@@ -453,24 +458,13 @@ $(document).ready(function(){
                 search = search.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&amp;');
                 var re = new RegExp("(" + search.split(' ').join('|') + ")", "gi");
 //                return '<div class="autocomplete-suggestion" data-langname="'+item[0]+'" data-lang="'+item[1]+'" data-val="'+search+'"><img src="img/'+item[1]+'.png"> '+item[0].replace(re, "<b>$1</b>")+'</div>';
-                return '<div class="autocomplete-suggestion" data-langname="'+item[0]+'" data-lang="'+item[1]+'" data-val="'+search+'"></div>';
+                return '<div class="autocomplete-suggestion" data-langname="'+item[0]+'" data-lang="'+item[1]+'" data-val="'+search+'"> '+item[0].replace(re, "<b>$1</b>")+'</div>';
             },
             onSelect: function(e, term, item){
                 console.log('Item "'+item.getAttribute('data-langname')+' ('+item.getAttribute('data-lang')+')" selected by '+(e.type == 'keydown' ? 'pressing enter' : 'mouse click')+'.');
                 document.getElementById('advanced-demo').value = item.getAttribute('data-langname')+' ('+item.getAttribute('data-lang')+')';
             }
         });
-
-        if (~window.location.href.indexOf('http')) {
-            (function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();
-            (function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0];if (d.getElementById(id)) return;js = d.createElement(s); js.id = id;js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=114593902037957";fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-            document.getElementById('github_social').innerHTML = '\
-                <iframe style="float:left;margin-right:15px" src="//ghbtns.com/github-btn.html?user=Pixabay&repo=JavaScript-autoComplete&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>\
-                <iframe style="float:left;margin-right:15px" src="//ghbtns.com/github-btn.html?user=Pixabay&repo=JavaScript-autoComplete&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>\
-            ';
-        }
 </script>
-<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js" async defer></script>
 </body>
 </html>

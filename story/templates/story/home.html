@@ -31,7 +31,7 @@
                 <div class="product-thumb-p" style="font-size:14px">
                   <b>{{ product.titlethumb|safe }}</b>
                   <br>
-                  <span class="glyphicon glyphicon-briefcase logo-char" title="Participation rate"></span><b> 57%</b>&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-equalizer logo-char" style="transform:scaleX(-1);" title="Average annual backtest result"></span><b> 32%</b>
+                  <span class="glyphicon glyphicon-briefcase logo-char" title="Participation rate"></span><b> 57%</b>&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-stats logo-char"  title="Average annual backtest result"></span><b> 32%</b>
                   <br>
                   <p style="font-size:11px;line-height:1.2;text-align:center;padding-left:10px;padding-right:10px;margin-bottom:8px">{{ product.titlecard|safe }}</p>
                 </div>
@@ -44,7 +44,7 @@
             <p style="font-size:14px;color:#000;"><a href="info-worst-of.html">Worst-of coupon products</a> pay investor a fixed coupon at the end of every period, if during that period the worst-performing stock performed <b>above</b> the strike level initially agreed upon. Currently offered Worst-Of coupon products:</p>
             {% for product in products|slice:":4" %}    
             <a href="product/{{ product.id }}" style="text-decoration:none">
-              <div class="well well-sm well-product" style="background:url('{% static "/" %}{{ product.logopath }}');background-size:cover;">
+              <div style="transform:scaleX(-1);" class="well well-sm well-product" style="background:url('{% static "/" %}{{ product.logopath }}');background-size:cover;">
                 <p class="product-thumb-p" style="font-size:14px">
                   <b>{{ product.titlethumb|safe }}</b>
                   <br>
