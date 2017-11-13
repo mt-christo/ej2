@@ -236,7 +236,7 @@
       bottom:0;
       border-bottom-left-radius:7px;
       border-bottom-right-radius:7px;
-      background-color:rgba(200, 230, 255, 0.8);
+      background-color:rgba(200, 230, 255, 0.85);
       text-align:center;
       line-height:1.8;
 //      padding-top:5px;
@@ -448,7 +448,8 @@ $(document).ready(function(){
             minChars: 1,
             source: function(term, suggest){
                 term = term.toLowerCase();
-                var choices = [['Australia', 'au'], ['Austria', 'at'], ['Brasil', 'br'], ['Bulgaria', 'bg'], ['Canada', 'ca'], ['China', 'cn'], ['Czech Republic', 'cz'], ['Denmark', 'dk'], ['Finland', 'fi'], ['France', 'fr'], ['Germany', 'de'], ['Hungary', 'hu'], ['India', 'in'], ['Italy', 'it'], ['Japan', 'ja'], ['Netherlands', 'nl'], ['Norway', 'no'], ['Portugal', 'pt'], ['Romania', 'ro'], ['Russia', 'ru'], ['Spain', 'es'], ['Swiss', 'ch'], ['Turkey', 'tr'], ['USA', 'us']];
+//                var choices = [['Australia', 'au'], ['Austria', 'at'], ['Brasil', 'br'], ['Bulgaria', 'bg'], ['Canada', 'ca'], ['China', 'cn'], ['Czech Republic', 'cz'], ['Denmark', 'dk'], ['Finland', 'fi'], ['France', 'fr'], ['Germany', 'de'], ['Hungary', 'hu'], ['India', 'in'], ['Italy', 'it'], ['Japan', 'ja'], ['Netherlands', 'nl'], ['Norway', 'no'], ['Portugal', 'pt'], ['Romania', 'ro'], ['Russia', 'ru'], ['Spain', 'es'], ['Swiss', 'ch'], ['Turkey', 'tr'], ['USA', 'us']];
+                var choices = [['Умная медицина', 'мед'], ['Финансовые гении', 'фин'], ['Превосходный код', 'ит']]
                 var suggestions = [];
                 for (i=0;i<choices.length;i++)
                     if (~(choices[i][0]+' '+choices[i][1]).toLowerCase().indexOf(term)) suggestions.push(choices[i]);
