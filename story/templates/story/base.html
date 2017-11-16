@@ -39,7 +39,9 @@
   }  
   .jumbotron {
       background-color: #6688ff;
-      background-image: url(https://static.pexels.com/photos/26681/pexels-photo-26681.jpg);
+  //      background-image: url(https://static.pexels.com/photos/26681/pexels-photo-26681.jpg);
+      background-image: url({% static "/" %}new-wing-emergency-at-the-moment.jpg);
+//      background-image: url(https://static.pexels.com/photos/6055/leaf-leaves-tree-green.jpg);
       background-position: center center;
       background-size: cover; 
       color: #000;
@@ -251,7 +253,7 @@ padding-top:5px;
       border: 0;
       font-size: 14px !important;
       line-height: 1.42857143 !important;
-      letter-spacing: 3px;
+      letter-spacing: 1px;
       border-radius: 0;
       font-family: Montserrat, sans-serif;
   }
@@ -346,16 +348,16 @@ input::-webkit-calendar-picker-indicator {
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right vertical-align-np">
-        <li><a href="#advantages">ADVANTAGES<br></a></li>
-        <li><a href="#partners">OUR PARTNERS<br></a></li>
+        <li><a href="#advantages">ПРЕИМУЩЕСТВА<br></a></li>
+        <li><a href="#partners">НАШИ ПАРТНЕРЫ<br></a></li>
 <!--        <li><a href="#yourproducts">OFFERS FOR YOU</a></li>-->
-        <li><a href="#products">PRODUCTS<br></a></li>
-        <li><a href="#about">ABOUT US<br></a></li>
+        <li><a href="#products">ПРОДУКТЫ<br></a></li>
+        <li><a href="#about">О НАС<br></a></li>
         <form>
           <div class="input-group" style="width:28rem;padding-left:20px">
-            <input id="advanced-demo" autofocus type="text" size="20" name="q" placeholder="Product search" style="line-height:2;padding-left:5px">
+            <input id="advanced-demo" autofocus type="text" size="20" name="q" placeholder="Поиск по продуктам" style="line-height:2;padding-left:5px">
             <div class="input-group-btn">
-              <button type="button" class="btn btn-success">Find it!</button>
+              <button type="button" class="btn btn-success">Найти</button>
             </div>
           </div>
         </form>

@@ -5,23 +5,40 @@
 
 
 {% block content %}
-  <div class="container vertical-align" style="background-color:rgba(2,51,67,0.55);color:#fff;height:100%">
+  <div class="container vertical-align" style="background-color:rgba(2,51,67,0.7);color:#fff;height:100%">
     <div class="row" style="width:100%">
       <div class="col-sm-2">
       </div>
       <div class="col-sm-8">
         <img src="{% static "/" %}verno-bird-white.png" style="height:7rem;margin-top:-23px"></img>
-        <h1 style="letter-spacing:1px;font-weight:500">VERNOPOLIS</h1> 
-        <p>Safe participation in modern economy</p>
+        <h1 style="letter-spacing:0px;font-weight:500">ВЕРНОПОЛИС</h1> 
+        <p>Выберите свою безрисковую инвестицию</p>
+        <br>
+        <div class="well tab-pane" style="color:#000;padding:0px;">
+          <form class="form-inline" style="padding:0px;"><center><p>
+            <div class="form-group" style="padding:0px 5px;">
+              <label for="quoteamount" style="padding:0px 5px;">Сумма, руб:</label>
+              <input type="number" size="20" id="quoteamount" placeholder="Сумма" style="line-height:2;padding-left:5px">
+            </div>
+            <div class="form-group" style="padding:0px 5px;">
+              <label for="quoteterm" style="padding:0px 5px;">Срок действия, лет:</label>
+              <select class="form-control" id="quoteterm">
+                <option>3</option>
+                <option>5</option>
+                <option>7</option>
+              </select>
+            </div></p></center>
+          </form>
+        </div>
         <br>
         <ul class="nav nav-tabs" style="border: 0px solid transparent;font-weight:600;">
-          <li class="active"><a data-toggle="tab" href="#Part"><span class="glyphicon glyphicon-briefcase logo-light"></span>&nbsp&nbspPARTICIPATION</a></li>
-          <li><a data-toggle="tab" href="#WO"><span class="glyphicon glyphicon-tag logo-light"></span>&nbsp&nbspWORST-OF ACCRUAL</a></li>
-          <li><a data-toggle="tab" href="#HWM"><span class="glyphicon glyphicon-arrow-up logo-light"></span>&nbsp&nbspHIGH WATER-MARK</a></li>
+          <li class="active"><a data-toggle="tab" href="#Part"><span class="glyphicon glyphicon-briefcase logo-light"></span>&nbsp&nbspУЧАСТИЕ В РЫНКЕ</a></li>
+          <li><a data-toggle="tab" href="#WO"><span class="glyphicon glyphicon-tag logo-light"></span>&nbsp&nbspУСЛОВНЫЙ КУПОН</a></li>
+          <li><a data-toggle="tab" href="#HWM"><span class="glyphicon glyphicon-arrow-up logo-light"></span>&nbsp&nbspМАКСИМАЛЬНОЕ УЧАСТИЕ</a></li>
         </ul>
         <div class="tab-content">
           <div id="Part" class="tab-pane fade in active">
-            <p style="font-size:14px;color:#000;"><a href="info-participation.html">Participation products</a> allow investor to participate in world's most developed economies <b>at no risk</b>. They are basically Call options on specific industrial indices or custom baskets of stocks. Currently offered Participation products:</p>
+            <p style="font-size:14px;color:#000;"><a href="info-participation.html">Участие в рынке</a> позволяет инвестору участвовать в росте рынка, не опасаясь снижения котировок ниже стартового уровня, то есть <b>без риска</b>. По сути, каждый такой продукт представляет собой Колл-опцион на интересный и перспективный индекс или корзину акций.</p>
             <div class="container">
               <div class="row">
                 {% for product in products|slice:":4" %}    
@@ -43,7 +60,7 @@
             </div>
           </div>
           <div id="WO" class="tab-pane fade">
-            <p style="font-size:14px;color:#000;"><a href="info-worst-of.html">Worst-of coupon products</a> pay investor a fixed coupon at the end of every period, if during that period the worst-performing stock performed <b>above</b> the strike level initially agreed upon. Currently offered Worst-Of coupon products:</p>
+            <p style="font-size:14px;color:#000;"><a href="info-worst-of.html">Условный купон</a> pay investor a fixed coupon at the end of every period, if during that period the worst-performing stock performed <b>above</b> the strike level initially agreed upon. Currently offered Worst-Of coupon products:</p>
             <div class="container">
               <div class="row">
                 {% for product in products|slice:":4" %}    
